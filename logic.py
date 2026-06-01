@@ -1,4 +1,13 @@
 import json
+import os
+
+app_data = os.getenv('APPDATA')
+save_dir = os.path.join(app_data, 'PaycheckSplitter')
+os.makedirs(save_dir, exist_ok=True)
+save_path= os.path.join(save_dir, 'accounts.json')
+
+
+
 accounts = []
 
 def add_account(name, var_type, value):
@@ -68,15 +77,28 @@ def validate(total):
     return None
 
 def save_accounts():
-    with open("accounts.json", "w") as f:
+    with open(save_path, "w") as f:
         json.dump(accounts, f)
 
 def load_accounts():
     global accounts
     try:
-        with open("accounts.json", "r") as f:
+        with open(save_path, "r") as f:
             data = json.load(f)
             accounts.extend(data)
 
     except FileNotFoundError:
         pass
+
+def save_window_size(width, height):
+    size_path = os.path.join(save_dir, 'settings.json')
+    with open(size_path, 'w') as f:
+        json.dump({'width': width, 'height': height}, f)
+
+def load_window_size():
+    size_path = os.path.join(save_dir, 'settings.json')
+    try:
+        with open(size_path, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {'width': 300, 'height': 300}

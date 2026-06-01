@@ -20,8 +20,8 @@ A desktop application that helps you split your money across multiple accounts (
 ## How to Run
 
 1. Download or clone this repository from GitHub
-2. Make sure Python 3.7+ is installed on your computer
-3. Double-click `ui.py` to launch the app
+2. Open the `dist` folder
+3. Double click on `Paycheck Splitter.exe` to launch the app
 
 ---
 ## How to Use

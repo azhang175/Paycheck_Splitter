@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import messagebox
-from logic import accounts, add_account, edit_account, delete_account, calculate, validate, save_accounts, load_accounts
+from logic import accounts, add_account, edit_account, delete_account, calculate, validate, save_accounts, load_accounts, save_window_size, load_window_size
 
 root = tk.Tk()
 
-root.geometry('500x500')
+
 root.title("Paycheck Splitter")
 
 #-----Top Frame-------
@@ -145,6 +145,8 @@ def refresh_accounts():
         delete_button = tk.Button(middle_frame, text='Delete', command=delete)
         delete_button.grid(row=i+1, column=5)
 
+
+
 #----Top Frame----
 def open_add_account():
     top = tk.Toplevel(root)
@@ -213,8 +215,15 @@ bottom_frame.grid(row=2, column=0)
 add_account_button = tk.Button(bottom_frame, text="Add Account", command=open_add_account)
 add_account_button.grid(row=0, column=0)
 
-print()
+size = load_window_size()
+root.geometry(f"{size['width']}x{size['height']}")
 
+def on_close():
+    print("cosing, saving save", root.winfo_width(), root.winfo_height())
+    save_window_size(root.winfo_width(), root.winfo_height())
+    root.destroy()
+
+root.protocol("WM_DELETE_WINDOW", on_close)
 
 load_accounts()
 refresh_accounts()
