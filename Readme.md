@@ -19,7 +19,7 @@ A desktop application that helps you split your money across multiple accounts (
 ---
 ## How to Run
 
-1. Go to [Releases](https://github.com/azhang175/Paycheck_Splitter/releases/tag/v1.0.0)
+1. Go to [Releases](https://github.com/azhang175/BudgetFlow/releases)
 2. Download the lastest 'BudgetFlow.exe'
 3. Double-click to launch the app
 
